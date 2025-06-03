@@ -1,5 +1,6 @@
 import Card from "@/components/Card";
 import CustomButton from "@/components/CustomButton";
+import Loading from "@/components/Loading";
 import ModalAddEditClient from "@/components/ModalAddEditClient";
 import ModalRemove from "@/components/ModalRemove";
 import Pagination from "@/components/Pagination";
@@ -262,7 +263,7 @@ const Clients = () => {
 
         </ScreenContainer>
 
-      ) : <Text>Carregando</Text>}
+      ) : <Loading/>}
     </ScrollView>
   );
 };

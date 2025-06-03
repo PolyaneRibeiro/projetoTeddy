@@ -1,5 +1,6 @@
 import Card from "@/components/Card";
 import CustomButton from "@/components/CustomButton";
+import Loading from "@/components/Loading";
 import ScreenContainer from "@/components/ScreenContainer";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFocusEffect } from '@react-navigation/native';
@@ -95,7 +96,7 @@ const ClientsSelected = () => {
             }} />
         </ScreenContainer>
 
-      ) : <Text>Carregando</Text>}
+      ) : <Loading/>}
     </ScrollView>
   );
 };

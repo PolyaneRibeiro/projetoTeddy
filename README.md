@@ -30,7 +30,7 @@ npx expo start
 
 ou
 ```bash
-- npx expo start --tunnel
+npx expo start --tunnel
 ```
 
 Na saída do terminal, você poderá:
