@@ -1,27 +1,35 @@
-import { Ionicons } from "@expo/vector-icons";
+import HomeIcon from "@/assets/images/home.png";
+import HomeActiveIcon from "@/assets/images/homeActive.png";
+import PersonIcon from "@/assets/images/person.png";
+import PersonActiveIcon from "@/assets/images/personActive.png";
+import PersonSelectedIcon from "@/assets/images/personSelected.png";
+import PersonSelectedActiveIcon from "@/assets/images/personSelectedActive.png";
 import {
     DrawerItem
 } from "@react-navigation/drawer";
 import { router, usePathname } from "expo-router";
 import React from "react";
-import { Image, StyleSheet, View } from "react-native";
+import { Image, ImageSourcePropType, StyleSheet, View } from "react-native";
 
 type Route = "/" | "/clients" | '/clientsSelecteds';
 
-const drawerItems: { label: string; icon: string; route: Route }[] = [
+const drawerItems: { label: string; icon: ImageSourcePropType; iconActive: ImageSourcePropType; route: Route }[] = [
     {
         label: "Home",
-        icon: "home",
+        icon: HomeIcon,
+        iconActive: HomeActiveIcon,
         route: "/",
     },
     {
         label: "Clientes",
-        icon: "person",
+        icon: PersonIcon,
+        iconActive: PersonActiveIcon,
         route: "/clients",
     },
     {
         label: "Clientes Selecionados",
-        icon: "person",
+        icon: PersonSelectedIcon,
+        iconActive: PersonSelectedActiveIcon,
         route: "/clientsSelecteds",
     },
 ];
@@ -47,11 +55,9 @@ export default function CustomDrawer() {
                             <DrawerItem
                                 label={item.label}
                                 onPress={() => router.push(item.route)}
-                                icon={({ color, size }) => (
-                                    <Ionicons
-                                        name={item.icon as any}
-                                        size={20}
-                                        color={isActive ? "#f58020" : "#000"}
+                                icon={() => (
+                                    <Image
+                                        source={isActive ? item.iconActive : item.icon}
                                     />
                                 )}
                                 labelStyle={[
@@ -72,10 +78,10 @@ export default function CustomDrawer() {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: '#a3a3a3',
-      },
+    },
     logoContainer: {
         alignItems: "center",
-        marginTop: 70 ,
+        marginTop: 70,
         marginBottom: 30,
         backgroundColor: '#a3a3a3',
     },

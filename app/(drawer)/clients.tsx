@@ -201,6 +201,7 @@ const Clients = () => {
               <Picker.Item label="50" value={50} />
             </Picker>
           </View>
+
           {listClients?.clients.map(item => {
             return (
               <Card
@@ -290,13 +291,12 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   select: {
-    height: 30,
-    width: 50,
-    backgroundColor: '#f0f0f0',
+    height: 50,
+    width: 100,
+    backgroundColor: '#fff',
     color: '#333',
     borderRadius: 8,
     marginTop: 8,
-    borderColor: '#D9D9D9',
     borderWidth: 2,
   },
   containerSelect: {
