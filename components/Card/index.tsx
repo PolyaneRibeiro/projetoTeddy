@@ -22,14 +22,14 @@ const Card = ({ data, onPressMore, onPressEdit, onPressRemove, isSelectedScreen,
                 <Text>Empresa: {formatPrice(data.companyValuation)}</Text>
             </View>
             {isSelectedScreen ? (
-                <View style={styles.iconContainerMinus}>
-                    <TouchableOpacity onPress={onPressMore}>
+                <View style={styles.iconContainerMinus} testID="icon-container-minus">
+                    <TouchableOpacity onPress={onPressMore} testID="more-button">
                         <Image source={require('@/assets/images/minus.png')} />
                     </TouchableOpacity>
                 </View>
             ) : (
-                <View style={styles.iconContainer}>
-                    <TouchableOpacity onPress={onPressMore}>
+                <View style={styles.iconContainer} testID="icon-container">
+                    <TouchableOpacity onPress={onPressMore} testID="more-button">
                         <Image
                             source={
                                 isSelected
@@ -39,11 +39,11 @@ const Card = ({ data, onPressMore, onPressEdit, onPressRemove, isSelectedScreen,
                         />
                     </TouchableOpacity>
 
-                    <TouchableOpacity onPress={onPressEdit}>
+                    <TouchableOpacity onPress={onPressEdit} testID="edit-button">
                         <Image source={require('@/assets/images/edit.png')} />
                     </TouchableOpacity>
 
-                    <TouchableOpacity onPress={onPressRemove}>
+                    <TouchableOpacity onPress={onPressRemove} testID="remove-button">
                         <Image source={require('@/assets/images/trash.png')} />
                     </TouchableOpacity>
                 </View>)}
