@@ -20,6 +20,7 @@ cd projetoTeddy
 npm install
 ```
 
+
 ## ▶️ Como executar
 
 Para iniciar o projeto, utilize um dos comandos abaixo:
@@ -42,6 +43,8 @@ Na saída do terminal, você poderá:
 
 🌐 Rodar no navegador web
 
+
+
 ## ✨ Funcionalidades
 
 📋 Listagem de clientes
@@ -51,6 +54,7 @@ Na saída do terminal, você poderá:
 🔢 Seleção da quantidade de clientes por página
 
 
+
 ## 🧪 Testes
 
 Para executar os testes unitários:
@@ -58,7 +62,8 @@ Para executar os testes unitários:
 npm run test
 ```
 
-```bash
+
 Para gerar o relatório de cobertura:
+```bash
 npm run test -- --coverage
 ```
