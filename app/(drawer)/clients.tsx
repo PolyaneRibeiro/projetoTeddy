@@ -6,10 +6,11 @@ import Pagination from "@/components/Pagination";
 import ScreenContainer from "@/components/ScreenContainer";
 import { formatPrice } from "@/components/utils";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Picker } from '@react-native-picker/picker';
 import { useFocusEffect } from '@react-navigation/native';
 import axios from "axios";
 import React, { useCallback, useEffect, useState } from "react";
-import { ScrollView, StyleSheet, Text } from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 import Toast from "react-native-toast-message";
 import { IClientCreateOurEdit, IClientRemove, IClients } from "./types";
 
@@ -21,7 +22,7 @@ interface IListClients {
 
 const Clients = () => {
   const [listClients, setListClients] = useState<IListClients>()
-  const [limitPage, setLimitPage] = useState(16)
+  const [limitPage, setLimitPage] = useState(5)
   const [showAddClient, setShowAddClient] = useState(false)
   const [showRemoveClient, setShowRemoveClient] = useState(false)
   const [page, setPage] = useState(1)
@@ -49,7 +50,7 @@ const Clients = () => {
 
   useEffect(() => {
     fetchClients();
-  }, [page]);
+  }, [page, limitPage]);
 
   const loadSelected = async () => {
     const saved = await AsyncStorage.getItem('savedClients');
@@ -61,7 +62,6 @@ const Clients = () => {
       loadSelected();
     }, [])
   );
-
 
   const handleDelete = async () => {
     try {
@@ -87,13 +87,13 @@ const Clients = () => {
     if (!clientData) return;
 
     function parseCurrency(value: string | number): number {
-      if (typeof value === 'number') return value;    
-    
+      if (typeof value === 'number') return value;
+
       const cleaned = value
-        .replace(/[^\d,.-]/g, '') 
-        .replace(/\./g, '')       
-        .replace(',', '.');      
-    
+        .replace(/[^\d,.-]/g, '')
+        .replace(/\./g, '')
+        .replace(',', '.');
+
       return Number(cleaned);
     }
 
@@ -187,7 +187,19 @@ const Clients = () => {
             </Text>{' '}
             clientes encontrados nessa página:
           </Text>
-          <Text style={{ fontSize: 18 }}>Clientes por página:</Text>
+          <View style={styles.containerSelect}>
+            <Text style={{ fontSize: 18 }}>Clientes por página:</Text>
+            <Picker
+              selectedValue={limitPage}
+              onValueChange={(itemValue) => setLimitPage(itemValue)}
+              style={styles.select}
+            >
+              <Picker.Item label="5" value={5} />
+              <Picker.Item label="10" value={10} />
+              <Picker.Item label="20" value={20} />
+              <Picker.Item label="50" value={50} />
+            </Picker>
+          </View>
           {listClients?.clients.map(item => {
             return (
               <Card
@@ -276,4 +288,19 @@ const styles = StyleSheet.create({
     fontSize: 24,
     width: '100%',
   },
+  select: {
+    height: 30,
+    width: 50,
+    backgroundColor: '#f0f0f0',
+    color: '#333',
+    borderRadius: 8,
+    marginTop: 8,
+    borderColor: '#D9D9D9',
+    borderWidth: 2,
+  },
+  containerSelect: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10
+  }
 });
